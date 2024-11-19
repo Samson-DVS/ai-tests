@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Destiny Chart</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .chart-container {
+            display: grid;
+            grid-template-areas:
+                "dd dd mm yy yy"
+                "weakness-behavior . essence . strength-behavior"
+                "weakness-personality . essence . strength-personality"
+                "challenges challenges . strength strength"
+                "universal universal . lifetime lifetime";
+            grid-template-columns: repeat(5, 1fr);
+            gap: 10px;
+            max-width: 900px;
+            width: 100%;
+        }
+
+        .section {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #fff;
+        }
+
+        .section h3 {
+            margin: 5px 0;
+            font-size: 16px;
+            text-align: center;
+        }
+
+        .section input {
+            margin-top: 10px;
+            padding: 5px;
+            width: 80%;
+            text-align: center;
+        }
+
+        .essence {
+            grid-area: essence;
+            background-color: #ffdd57;
+        }
+
+        .dd { grid-area: dd; }
+        .mm { grid-area: mm; }
+        .yy { grid-area: yy; }
+        .weakness-behavior { grid-area: weakness-behavior; }
+        .strength-behavior { grid-area: strength-behavior; }
+        .weakness-personality { grid-area: weakness-personality; }
+        .strength-personality { grid-area: strength-personality; }
+        .challenges { grid-area: challenges; }
+        .strength { grid-area: strength; }
+        .universal { grid-area: universal; background-color: #d1e7dd; }
+        .lifetime { grid-area: lifetime; background-color: #cfe2ff; }
+
+        button {
+            grid-column: 1 / -1;
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="chart-container">
+        <!-- Inputs for DD, MM, YY -->
+        <div class="section dd">
+            <h3>DD</h3>
+            <input type="number" id="dd" placeholder="Enter DD">
+        </div>
+        <div class="section mm">
+            <h3>MM</h3>
+            <input type="number" id="mm" placeholder="Enter MM">
+        </div>
+        <div class="section yy">
+            <h3>YY</h3>
+            <input type="number" id="yy" placeholder="Enter YY">
+        </div>
+
+        <!-- Behavior Section -->
+        <div class="section weakness-behavior">
+            <h3>Weakness Behavior</h3>
+            <input type="text" id="weaknessBehavior" placeholder="Enter Score">
+        </div>
+        <div class="section strength-behavior">
+            <h3>Strength Behavior</h3>
+            <input type="text" id="strengthBehavior" placeholder="Enter Score">
+        </div>
+
+        <!-- Personality Section -->
+        <div class="section weakness-personality">
+            <h3>Weakness Personality</h3>
+            <input type="text" id="weaknessPersonality" placeholder="Enter Score">
+        </div>
+        <div class="section strength-personality">
+            <h3>Strength Personality</h3>
+            <input type="text" id="strengthPersonality" placeholder="Enter Score">
+        </div>
+
+        <!-- Essence -->
+        <div class="section essence">
+            <h3>Essence of Life</h3>
+            <div id="essenceResult">Calculated Automatically</div>
+        </div>
+
+        <!-- Challenges and Strength -->
+        <div class="section challenges">
+            <h3>Inborn Challenges</h3>
+            <input type="text" id="challenges" placeholder="Enter Score">
+        </div>
+        <div class="section strength">
+            <h3>Inborn Strength</h3>
+            <input type="text" id="strength" placeholder="Enter Score">
+        </div>
+
+        <!-- Universal and Lifetime -->
+        <div class="section universal">
+            <h3>Universal Character</h3>
+            <input type="text" id="universal" placeholder="Enter Score">
+        </div>
+        <div class="section lifetime">
+            <h3>Lifetime Destiny</h3>
+            <input type="text" id="lifetime" placeholder="Enter Score">
+        </div>
+
+        <!-- Calculate Button -->
+        <button onclick="calculateScores()">Calculate</button>
+    </div>
+
+    <script>
+        function calculateScores() {
+            const dd = parseInt(document.getElementById("dd").value) || 0;
+            const mm = parseInt(document.getElementById("mm").value) || 0;
+            const yy = parseInt(document.getElementById("yy").value) || 0;
+
+            const essence = dd + mm + yy;
+            document.getElementById("essenceResult").textContent = `Essence Value: ${essence}`;
+        }
+    </script>
+</body>
+</html>
